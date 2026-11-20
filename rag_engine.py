@@ -28,11 +28,11 @@ def create_chunks(full_text, chunksize = 500, overlap=100):
   def build_vectors (chunks, model_name = "all-MiniLM-L6-v2"):
     if not chunks:
       raise ValueError("cannot apply embedding without chunks")
-    embd_model = SentenceTransformer(model_name)
-    embd_vectors = embd_model.encode(chunks, convert_to_numpy = True)
+    embed_model = SentenceTransformer(model_name)
+    embed_vectors = embed_model.encode(chunks, convert_to_numpy = True)
     faiss.normalize_L2(embed_vectors)
     index = faiss.IndexFlatIP(embed_vectors.shape[1])
-    index.add(embd_vectors)
+    index.add(embed_vectors)
     return index, embed_model
 
 #Call loadpdf, chunk, embedding
