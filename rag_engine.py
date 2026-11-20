@@ -39,7 +39,7 @@ def create_chunks(full_text, chunksize = 500, overlap=100):
 def load_base (pdf_path= "01_College_Information.pdf"):
   full_text = load_pdf(pdf_path)
   chunks = create_chunks(full_text)
-  index embed_model = build_vectors(chunks)
+  index, embed_model = build_vectors(chunks)
   return index, embed_model, chunks
 
   #retrieve
