@@ -31,7 +31,7 @@ if question:
 
   with st.chat_message("assistant"):
     with st.spinner("Asking RAG for answer...."):
-      answer = ask_rag (question, embed_model, chunks, index, api_key = my_key)
+      answer = ask_rag(question, embed_model, chunks, index, api_key = my_key)
       st.write(answer)
       st.session_state.chat_history.append(
         {"role" : "assistant", "content" : answer})
