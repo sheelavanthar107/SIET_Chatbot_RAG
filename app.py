@@ -5,11 +5,12 @@ st.title("Shridevi Institute of Engineering and Technology - ChatBot")
 st.caption("Ask anything about college information...")
 st.caption("Created by Harshitha")
 
-mykey = st.secrets("GROQ_API_KEY")
+mykey = st.secrets["GROQ_API_KEY"]
 
 @st.cache_resource
-def intiate_rag():
+def initiate_rag():
   return load_base("01_College_Information.pdf")
+  
   index, embed_model, chunks = initiate_rag()
 
 
