@@ -34,7 +34,7 @@ if question:
       answer = ask_rag (question, embed_model, chunks,
                         index, api_key = mykey)
       st.write(answer)
-       {"role" :"assistant", "content" : answer}(
+    {"role" : "assistant", "content" : answer}(
         st.session_state.chat_history.append)
 
 if st.button("Clear chat"):
