@@ -1,7 +1,7 @@
 import faiss
 import numpy as np
 from groq import Groq
-from pypdf import PDFReader
+from pypdf import PdfReader
 from sentence_transformers import SentenceTransformer
 
 #load pdfs
@@ -39,8 +39,8 @@ def create_chunks(full_text, chunksize = 500, overlap=100):
 def load_base (pdf_path= "01_College_Information.pdf"):
   full_text = load_pdf(pdf_path)
   chunks = create_chunks(full_text)
-  embed_model, index = build_vector(chunks)
-  return embed_model,chunks, index
+  index embed_model, = build_vector(chunks)
+  return index, embed_model, chunks
 
   #retrieve
   def retrieve_content (question, embed_model, chunks, index, num_shunks=3):
@@ -53,9 +53,9 @@ def load_base (pdf_path= "01_College_Information.pdf"):
     sim_scores, vec_indices = index.search(query_embed), min(num_chunks, len(chunks))
     background = ""
     for i in vec_indicates[0]:
-      if i !=-1:
+      if i != -1:
         background += chunks[i] + "\n\n"
-        return background
+    return background
 #ask
 def ask_rag (question, embed_model, chunks, index, api_key, num_chunks, model_name)
 key = api_key
